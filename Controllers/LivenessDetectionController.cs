@@ -25,7 +25,7 @@
                 byte[] image1 = [], image2 = [];
 
                 // Extract the optional request header 'Reference-Number'.
-                Request.Headers.TryGetValue("referencenumber", out var refHeader);
+                Request.Headers.TryGetValue("Reference-Number", out var refHeader);
 
                 // Verify whether the first live image has been transmitted.
                 if (livenessDetectionRequest.LiveImages.Count > 0)

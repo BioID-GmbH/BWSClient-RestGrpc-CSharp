@@ -25,7 +25,7 @@
                 byte[] photo = [], image1 = [], image2 = [];
 
                 // Extract the optional request header 'Reference-Number'.
-                Request.Headers.TryGetValue("referencenumber", out var refHeader);
+                Request.Headers.TryGetValue("Reference-Number", out var refHeader);
 
                 // Retrieve live images and id photo from rest request
                 // Verify whether the id photo has been transmitted.

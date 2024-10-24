@@ -24,7 +24,7 @@
                 byte[] video = [];
 
                 // Extract the optional request header 'Reference-Number'.
-                Request.Headers.TryGetValue("referencenumber", out var refHeader);
+                Request.Headers.TryGetValue("Reference-Number", out var refHeader);
 
                 // Extract video file from request.
                 if (!string.IsNullOrWhiteSpace(videoLivenessDetectionRequest.Video))
