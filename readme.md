@@ -16,7 +16,7 @@ To get a first impression of how our new services work, you can try them out on 
 ## Project structure
 - `Properties/`
     - `launchsettings.json` - For configuring how the application is launched and debugged during development.
-  The port on which the app runs can also be set here.
+  The port on which the app runs can also be set here. It is only relevant if you start in Visual Studio.
 - `Auth/` - Contains custom authentication handlers that manage user authentication and authorization.
 - `Controllers/` - Contains the controllers for the REST API endpoints.
 - `DataTypes/` - Data types represent the data structures with which the application works.
