@@ -1,7 +1,7 @@
 // PhotoVerify api
 POST https://localhost:7184/photoverify
 Content-Type: application/json
-ReferenceNumber:BioID.RestGrpcForwarder.C#
+Reference-Number:BioID.RestGrpcForwarder.C#
 ApiKey:  HwYrknSCZWPuIXX2B6Gg6Z7HjwR4WqdZ
 {
 	"LiveImages": [
