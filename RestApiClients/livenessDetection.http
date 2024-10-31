@@ -1,5 +1,5 @@
 // LivenessDetection Api
-POST https://localhost:7184/livenessdetection
+POST http://localhost:5226/livenessdetection
 Content-Type: application/json
 Reference-Number:BioID.RestGrpcForwarder.C#
 ApiKey:  HwYrknSCZWPuIXX2B6Gg6Z7HjwR4WqdZ
