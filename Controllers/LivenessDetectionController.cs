@@ -1,12 +1,12 @@
-﻿namespace BioID.RestGrpcForwarder.Controllers
-{
-    using BioID.RestGrpcForwarder.DataTypes;
-    using BioID.Services;
-    using Google.Protobuf;
-    using Grpc.Core;
-    using Microsoft.AspNetCore.Authorization;
-    using Microsoft.AspNetCore.Mvc;
+﻿using BioID.RestGrpcForwarder.DataTypes;
+using BioID.Services;
+using Google.Protobuf;
+using Grpc.Core;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 
+namespace BioID.RestGrpcForwarder.Controllers
+{
     [Authorize]
     [ApiController]
     [Route("[controller]")]
@@ -48,11 +48,11 @@
                 if (image2.Length > 0)
                 {
                     var imgdata2 = new ImageData { Image = ByteString.CopyFrom(image2) };
-
-                    // Add a tag to the request for challenge response
-                    if (livenessDetectionRequest.LiveImages.Count > 1
-                        && !string.IsNullOrEmpty(livenessDetectionRequest.LiveImages[1].Tags.FirstOrDefault()))
-                    { imgdata2.Tags.Add(livenessDetectionRequest.LiveImages[1].Tags[0]); }
+                    // Add the tags to the request for challenge response
+                    if (livenessDetectionRequest.LiveImages[1].Tags.Count > 0)
+                    {
+                        imgdata2.Tags.AddRange(livenessDetectionRequest.LiveImages[1].Tags);
+                    }
                     livenessRequest.LiveImages.Add(imgdata2);
                 }
 

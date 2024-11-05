@@ -1,12 +1,12 @@
-﻿namespace BioID.RestGrpcForwarder.Controllers
-{
-    using BioID.RestGrpcForwarder.DataTypes;
-    using BioID.Services;
-    using Google.Protobuf;
-    using Grpc.Core;
-    using Microsoft.AspNetCore.Authorization;
-    using Microsoft.AspNetCore.Mvc;
+﻿using BioID.RestGrpcForwarder.DataTypes;
+using BioID.Services;
+using Google.Protobuf;
+using Grpc.Core;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 
+namespace BioID.RestGrpcForwarder.Controllers
+{
     [Authorize]
     [ApiController]
     [Route("[controller]")]

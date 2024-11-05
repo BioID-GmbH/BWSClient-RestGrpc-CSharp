@@ -1,9 +1,8 @@
 using BioID.RestGrpcForwarder.Auth;
 using BioID.Services;
 using Microsoft.AspNetCore.Authentication;
+using Microsoft.IdentityModel.JsonWebTokens;
 using Microsoft.IdentityModel.Tokens;
-using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
 
 // create webapp
 var builder = WebApplication.CreateBuilder(args);
@@ -19,20 +18,21 @@ builder.Services.Configure<ApiAuthConfiguration>(builder.Configuration.GetSectio
 builder.Services.AddGrpcClient<BioIDWebService.BioIDWebServiceClient>(o =>
 {
     // Configure grpc server endpoint from appsettings.json
-    var gprcEndpoint = builder.Configuration.GetSection("BwsGrpcApiSettings")["Endpoint"] ?? throw new InvalidOperationException("The gRPC endpoint is not specified or is incorrect.");
+    var gprcEndpoint = builder.Configuration["BwsGrpcApiSettings:Endpoint"] ?? throw new InvalidOperationException("The gRPC endpoint is not specified or is incorrect.");
     o.Address = new Uri(gprcEndpoint);
 })
     .AddCallCredentials((context, metadata, serviceProvider) =>
     {
-        // Generate JWT token 
-        var key = builder.Configuration.GetSection("BwsGrpcApiSettings")["AccessKey"] ?? throw new InvalidOperationException("The grpc access key could not be found.");
+        // Generate Json Web Token 
+        var key = builder.Configuration["BwsGrpcApiSettings:AccessKey"] ?? throw new InvalidOperationException("The grpc access key could not be found.");
         var securityKey = new SymmetricSecurityKey(Convert.FromBase64String(key));
-        var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha512);
-        var clientID = builder.Configuration.GetSection("BwsGrpcApiSettings")["ClientId"] ?? throw new InvalidOperationException("The grpc clientId could not be found.");
-        List<Claim> claims = [new Claim(JwtRegisteredClaimNames.Sub, clientID)];
-        var now = DateTime.UtcNow;
-        string token = new JwtSecurityTokenHandler().CreateEncodedJwt("RestGrpcForwarder", "bws", new ClaimsIdentity(claims), now, now.AddMinutes(10), now, credentials);
-        metadata.Add("Authorization", $"Bearer {token}");
+        var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
+        var clientId = builder.Configuration["BwsGrpcApiSettings:ClientId"] ?? throw new InvalidOperationException("The grpc clientId could not be found.");
+        var claims = new Dictionary<string, object> { [JwtRegisteredClaimNames.Sub] = clientId, }; 
+        var descriptor = new SecurityTokenDescriptor { Claims = claims, Issuer = clientId, Audience = "BWS", SigningCredentials = credentials };
+        var handler = new JsonWebTokenHandler { SetDefaultTimesOnTokenCreation = true, TokenLifetimeInMinutes = 5 };
+        string jwt = handler.CreateToken(descriptor);
+        metadata.Add("Authorization", $"Bearer {jwt}");
         return Task.CompletedTask;
     });
 
