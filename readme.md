@@ -49,7 +49,7 @@ This service can handle conversions in both directions. Any other service can al
 
 > #### Before starting the service, follow these steps.
 
-> - You need a **BioID Account** with a **confirmed** email address. If you don’t have one, [create a BioID account][bioidaccountregister].
+> - You need a **BioID Account** with a **confirmed** email address. If you donâ€™t have one, [create a BioID account][bioidaccountregister].
 > - You can create a free [trial subscription][trial] of the BioID Web Service (BWS) once you've created your BioID account.
 > - After you have signed in to the BWS Portal and created the trial subscription with the help of a wizard, you still need to create a BWS 3 client.
 > - The client can be created with the help of a creation wizard.
@@ -62,7 +62,7 @@ This service can handle conversions in both directions. Any other service can al
   
 1. Clone the repository.
    ```cmd
-    git clone https://github.com/BioID-GmbH/RestGrpcForwarder.git
+    git clone https://github.com/BioID-GmbH/BWSClient-RestGrpc-CSharp.git
     ```
 
 2. Navigate to the project folder and install the dependencies.
