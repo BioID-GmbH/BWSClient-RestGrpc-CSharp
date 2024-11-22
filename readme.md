@@ -80,12 +80,12 @@ The settings file is located in the root folder of the app.
 
 4. Build the app for your target platform. Insert your target platform without `< >` symbol.
     ```cmd
-   dotnet build  -configuration Release <target platform> --self-contained true
+   dotnet build --configuration Release <target platform> --self-contained true
    ```
 
 5. Launch the application.
     ```cmd
-    dotnet run --project BioID.RestGrpcForwarder
+    dotnet run --project BioID.RestGrpcForwarder.csproj
     ```
  
 #### Example endpoints
