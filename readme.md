@@ -65,23 +65,22 @@ This service can handle conversions in both directions. Any other service can al
     git clone https://github.com/BioID-GmbH/BWSClient-RestGrpc-CSharp.git
     ```
 
-2. Navigate to the project folder and install the dependencies.
+2. Change the current directory to the BWSClient-RestGrpc-CSharp folder
+   ```cmd
+    cd BWSClient-RestGrpc-CSharp
+    ```
+
+3. Navigate to the project folder and install the dependencies.
     ```cmd
     dotnet restore
     ```
 
-3. Add your BWS gRPC client Id and access key to the `appsettings.json` file so that you can communicate with our BWS 3.
+4. Add your BWS gRPC client Id and access key to the `appsettings.json` file so that you can communicate with our BWS 3.
 Instructions on where to obtain these are provided above.
 The settings file is located in the root folder of the app.
 
 
 ![BWS gRPC endpoint, client Id and access key](/bwsSettings.png)
-
-
-4. Build the app for your target platform. Insert your target platform without `< >` symbol.
-    ```cmd
-   dotnet build --configuration Release <target platform> --self-contained true
-   ```
 
 5. Launch the application.
     ```cmd
