@@ -1,4 +1,4 @@
-// LivenessDetection Api with chaleneg response 
+// LivenessDetection Api with challenge response
 POST http://localhost:5226/livenessdetection
 Content-Type: application/json
 Reference-Number:BioID.RestGrpcForwarder.C#
