@@ -40,10 +40,10 @@ namespace BioID.RestGrpcForwarder.Controllers
                     image2 = Convert.FromBase64String(livenessDetectionRequest.LiveImages[1].Image);
                 }
 
-                // Create livenessDetection request.
+                // Create LivenessDetection request.
                 var livenessRequest = new LivenessDetectionRequest();
 
-                // Add live images to the LiveneDetetction grpc request.
+                // Add live images to the LivenessDetection grpc request.
                 livenessRequest.LiveImages.Add(new ImageData { Image = ByteString.CopyFrom(image1) });
                 if (image2.Length > 0)
                 {
@@ -56,13 +56,13 @@ namespace BioID.RestGrpcForwarder.Controllers
                     livenessRequest.LiveImages.Add(imgdata2);
                 }
 
-                // Call bws livenessDeetction api via grpc.
+                // Call bws LivenessDetection api via grpc.
                 var call = _bwsClient.LivenessDetectionAsync(livenessRequest, headers: new Metadata { { "Reference-Number", refHeader.ToString() } });
 
-                // Read out the livenessdetection api response.
+                // Read out the LivenessDetection api response.
                 var response = await call.ResponseAsync.ConfigureAwait(false);
 
-                _logger.LogInformation("Call to livedetection API returned {StatusCode}.", response.Status);
+                _logger.LogInformation("Call to LivenessDetection API returned {StatusCode}.", response.Status);
 
                 // Get grpc response metadata.
                 var responseHeaders = await call.ResponseHeadersAsync;

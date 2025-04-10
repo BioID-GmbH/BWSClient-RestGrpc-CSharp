@@ -74,7 +74,7 @@ namespace BioID.RestGrpcForwarder.Controllers
                 // Read out the photoverify api response.
                 var response = await photoVerifyCall.ResponseAsync.ConfigureAwait(false);
 
-                _logger.LogInformation("Call to photoVerify API returned {StatusCode}.", response.Status);
+                _logger.LogInformation("Call to PhotoVerify API returned {StatusCode}.", response.Status);
 
                 // Get grpc response metadata.
                 var responseHeaders = await photoVerifyCall.ResponseHeadersAsync;
