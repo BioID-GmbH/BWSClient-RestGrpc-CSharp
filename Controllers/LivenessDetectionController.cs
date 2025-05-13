@@ -1,12 +1,12 @@
-﻿using BioID.RestGrpcForwarder.DataTypes;
-using BioID.Services;
-using Google.Protobuf;
-using Grpc.Core;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-
-namespace BioID.RestGrpcForwarder.Controllers
+﻿namespace BioID.RestGrpcForwarder.Controllers
 {
+    using BioID.RestGrpcForwarder.DataTypes;
+    using BioID.Services;
+    using Google.Protobuf;
+    using Grpc.Core;
+    using Microsoft.AspNetCore.Authorization;
+    using Microsoft.AspNetCore.Mvc;
+
     [Authorize]
     [ApiController]
     [Route("[controller]")]
@@ -57,7 +57,7 @@ namespace BioID.RestGrpcForwarder.Controllers
                 }
 
                 // Call bws LivenessDetection api via grpc.
-                var call = _bwsClient.LivenessDetectionAsync(livenessRequest, headers: new Metadata { { "Reference-Number", refHeader.ToString() } });
+                using var call = _bwsClient.LivenessDetectionAsync(livenessRequest, headers: new Metadata { { "Reference-Number", refHeader.ToString() } });
 
                 // Read out the LivenessDetection api response.
                 var response = await call.ResponseAsync.ConfigureAwait(false);

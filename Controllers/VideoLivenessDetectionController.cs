@@ -1,12 +1,12 @@
-﻿using BioID.RestGrpcForwarder.DataTypes;
-using BioID.Services;
-using Google.Protobuf;
-using Grpc.Core;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-
-namespace BioID.RestGrpcForwarder.Controllers
+﻿namespace BioID.RestGrpcForwarder.Controllers
 {
+    using BioID.RestGrpcForwarder.DataTypes;
+    using BioID.Services;
+    using Google.Protobuf;
+    using Grpc.Core;
+    using Microsoft.AspNetCore.Authorization;
+    using Microsoft.AspNetCore.Mvc;
+
     [Authorize]
     [ApiController]
     [Route("[controller]")]
@@ -44,7 +44,7 @@ namespace BioID.RestGrpcForwarder.Controllers
                 {
                     Video = ByteString.CopyFrom(video)
                 };
-                var videoLivenessCall = _bwsClient.VideoLivenessDetectionAsync(videoRequest, headers: new Metadata { { "Reference-Number", refHeader.ToString() } });
+                using var videoLivenessCall = _bwsClient.VideoLivenessDetectionAsync(videoRequest, headers: new Metadata { { "Reference-Number", refHeader.ToString() } });
                 var response = await videoLivenessCall.ResponseAsync.ConfigureAwait(false);
 
                 _logger.LogInformation("Call to VideoLivenessDetection API returned {StatusCode}.", response.Status);

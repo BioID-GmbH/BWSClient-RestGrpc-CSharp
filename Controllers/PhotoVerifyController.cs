@@ -1,12 +1,12 @@
-﻿using BioID.RestGrpcForwarder.DataTypes;
-using BioID.Services;
-using Google.Protobuf;
-using Grpc.Core;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-
-namespace BioID.RestGrpcForwarder.Controllers
+﻿namespace BioID.RestGrpcForwarder.Controllers
 {
+    using BioID.RestGrpcForwarder.DataTypes;
+    using BioID.Services;
+    using Google.Protobuf;
+    using Grpc.Core;
+    using Microsoft.AspNetCore.Authorization;
+    using Microsoft.AspNetCore.Mvc;
+
     [Authorize]
     [ApiController]
     [Route("[controller]")]
@@ -69,7 +69,7 @@ namespace BioID.RestGrpcForwarder.Controllers
                 }
 
                 // Call bws photoverify api via grpc.
-                var photoVerifyCall = _bwsClient.PhotoVerifyAsync(verifyRequest, headers: new Metadata { { "Reference-Number", refHeader.ToString() } });
+                using var photoVerifyCall = _bwsClient.PhotoVerifyAsync(verifyRequest, headers: new Metadata { { "Reference-Number", refHeader.ToString() } });
 
                 // Read out the photoverify api response.
                 var response = await photoVerifyCall.ResponseAsync.ConfigureAwait(false);
