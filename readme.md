@@ -11,7 +11,7 @@ RESTful API that is used by your client app(s).
 To get a first impression of how our new biometric services work, you can try them out on our [BioID Playground][playground].
 
 ## Technologies
-- ASP.NET Core 8
+- ASP.NET Core 10
 - RESTful API
 - gRPC
 - C#
@@ -29,7 +29,7 @@ To get a first impression of how our new biometric services work, you can try th
 - `Program.cs` - This is the main entry point of the application.
 
 ## Get Started
-This sample is built with [.NET 8][dotnet8] and runs on Windows, Linux, and macOS.
+This sample is built with [.NET 10][dotnet10] and runs on Windows, Linux, and macOS.
 
 Download a [development tool][dotnettools] for Windows, Linux, or macOS. You can use your preferred development environment,
 such as Visual Studio, Visual Studio Code, Visual Studio for Mac, the .NET Core CLI, or other .NET tools.
@@ -105,7 +105,7 @@ and [VideoLivenessDetection][videoliveness].*
 - **VideoLivenessDetection**:
   - `RestApiClients/videoLivenessDetection.http`
 
-[dotnet8]: https://dotnet.microsoft.com/download "Download .NET 8"
+[dotnet10]: https://dotnet.microsoft.com/download "Download .NET 10"
 [dotnettools]: https://dotnet.microsoft.com/platform/tools ".NET Tools & Editors"
 [base64.guru]: https://base64.guru/ "Base64 String online converter" 
 [bioidaccountregister]: https://account.bioid.com/Account/Register "Register a BioID account" 
