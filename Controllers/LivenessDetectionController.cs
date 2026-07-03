@@ -62,7 +62,7 @@
                 // Read out the LivenessDetection api response.
                 var response = await call.ResponseAsync.ConfigureAwait(false);
 
-                _logger.LogInformation("Call to LivenessDetection API returned {StatusCode}.", response.Status);
+                if (_logger.IsEnabled(LogLevel.Information)) { _logger.LogInformation("Call to LivenessDetection API returned {StatusCode}.", response.Status); }
 
                 // Get grpc response metadata.
                 var responseHeaders = await call.ResponseHeadersAsync;

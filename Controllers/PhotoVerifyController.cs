@@ -74,7 +74,7 @@
                 // Read out the photoverify api response.
                 var response = await photoVerifyCall.ResponseAsync.ConfigureAwait(false);
 
-                _logger.LogInformation("Call to PhotoVerify API returned {StatusCode}.", response.Status);
+                if (_logger.IsEnabled(LogLevel.Information)) { _logger.LogInformation("Call to PhotoVerify API returned {StatusCode}.", response.Status); }
 
                 // Get grpc response metadata.
                 var responseHeaders = await photoVerifyCall.ResponseHeadersAsync;
